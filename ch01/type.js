@@ -109,3 +109,71 @@ const falsy = false;
 if (truthy) {
     console.log("참 입니다.");
 }
+
+// ----------------------------------------------------------------------------------------------------
+
+// 2.4 null과 undefined
+// null은 값이 없음을 나타낼 때 사용하는 특별한 값입니다. null에 typeof 연산자를 사용하면 문자열 "object"를 반환하는데
+// 이로 미루어 null은 '객체가 없다'는 것을 나타내는 특별한 객체 값이라고 볼 수 있습니다.
+// null은 해당 타입의 유일한 멤버로 인식되며, 객체뿐 아니라 숫자나 문자열에도 '값이 없다'는 의미로 사용될 수 있습니다.
+
+// undefined 역시 값이 없음을 나타내는 값인데요. undefined는 좀 다른 의미에서 값이 없음을 나타냅니다.
+// 이 값은 초기화되지 않은 변수의 값이며 존재하지 않는 객체 프로퍼티나 배열 요소에 접근했을 때 반환되는 값입니다.
+// 또한, 값을 명시적으로 반환하지 않는 함수의 반환 값이며, 전달되지 않은 인자의 값이기도 합니다.
+// undefined에 typeof 연산자를 적용하면 문자열 "undefined"를 반환합니다. undefined 역시 특별한 타입이고 멤버는 그 하나뿐이라는 뜻입니다.
+
+// null과 undefined의 차이점은
+// undefined의 경우 시스템 레벨이고 예측되지 않았거나 에러 비슷한 상황에서 값이 없는 것이라 간주하고
+// null의 경우 프로그램 레벨이고, 정상적이거나 예측 가능한 상황에서 값이 없는 것이라 간주합니다.
+
+// null: 존재하지 않는다. 값이 비어있다. 값을 알 수 없다. 명시적으로 표현
+// 의도적으로 변수를 비우거나, 특정 상황에서 값이 없음을 나타내기 위해 사용됩니다.
+let value1 = null;
+console.log(value1); // null
+
+// undefined: 변수가 선언되었지만, 값이 할당되지 않았음을 나타냅니다.
+// 함수가 값을 반환하지 않거나, 객체에서 존재하지 않는 속성에 접근했을 경우에도 undefined가 반환됩니다.
+let value2;
+console.log(value2); // undefined
+
+const user = {
+    name: "9Diin",
+    age: 30,
+};
+console.log(user.name); // 9Diin
+console.log(user.age); // 30
+console.log(user.email); // undefined
+console.log(user.password); // undefined
+
+// ----------------------------------------------------------------------------------------------------
+
+// 2.5 심벌(Symbol)
+// 심벌을 이해하기 위해서는 자바스크립트 객체 타입이 프로퍼티의 순서 없는 집합이며 각 프로퍼티에 이름과 같이 있다는 것을 이해해야 합니다.
+// 객체는 보통 이름-값(key-value)의 구조를 갖는다고 말씀을 드렸죠?
+// 객체에서 프로퍼티(속성)의 이름은 일반적으로 문자열입니다. (ES6 이전에는 오로지 문자열이었습니다.)
+// ES6 이후에는 심벌 역시 문자열과 같은 목적으로 사용할 수 있게 되었습니다.
+
+let strname = "string name";
+let synname = Symbol("propname");
+
+console.log(typeof strname); // string
+console.log(typeof synname); // symbol
+
+let obj = {}; // 새로운 객체를 리터럴 방식으로 생성한다.
+obj[strname] = 10; // 문자열 이름으로 프로퍼티를 정의한다.
+obj[synname] = 20; // 심벌 이름으로 프로퍼티를 정의한다.
+
+console.log(obj);
+console.log(Object.keys(obj)); // ["string name"]
+console.log(obj[synname]); // 20
+console.log(obj[Symbol("propname")]); // undefined
+
+// 심벌 타입에는 리터럴 문법이 없습니다.
+// 심벌 값을 가져올 때는 Symbol() 함수를 호출합니다. 이 함수는 절대 같은 값을 반환하지 않습니다.
+// 같은 인자로 호출하더라도 다른 값을 반환합니다.
+
+// Symbol()을 호출해 심벌 값을 얻었다면 객체의 기존 프로퍼티를 같은 이름으로 덮어 쓸 염려 없이 그 값을 프로퍼티 이름으로 추가할 수 있다는 뜻입니다.
+
+let sym1 = Symbol("sym1");
+let sym2 = Symbol("sym1");
+console.log(sym1 === sym2); // false

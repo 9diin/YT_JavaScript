@@ -151,7 +151,7 @@ console.log(user.password); // undefined
 // ----------------------------------------------------------------------------------------------------
 
 // 2.5 심벌(Symbol)
-// 심벌을 이해하기 위해서는 자바스크립트 객체 타입이 프로퍼티의 순서 없는 집합이며 각 프로퍼티에 이름과 같이 있다는 것을 이해해야 합니다.
+// 심벌을 이해하기 위해서는 자바스크립트 객체 타입이 프로퍼티의 순서 없는 집합이며 각 프로퍼티에 이름과 값이 있다는 것을 이해해야 합니다.
 // 객체는 보통 이름-값(key-value)의 구조를 갖는다고 말씀을 드렸죠?
 // 객체에서 프로퍼티(속성)의 이름은 일반적으로 문자열입니다. (ES6 이전에는 오로지 문자열이었습니다.)
 // ES6 이후에는 심벌 역시 문자열과 같은 목적으로 사용할 수 있게 되었습니다.
@@ -163,28 +163,32 @@ console.log(typeof strname); // string
 console.log(typeof synname); // symbol
 
 let obj = {}; // 새로운 객체를 리터럴 방식으로 생성한다.
+
 obj[strname] = 10; // 문자열 이름으로 프로퍼티를 정의한다.
 obj[synname] = 20; // 심벌 이름으로 프로퍼티를 정의한다.
+
+console.log("----- 호출 시작 -----");
 
 console.log(obj);
 console.log(Object.keys(obj)); // ["string name"]
 console.log(obj[synname]); // 20
 console.log(obj[Symbol("propname")]); // undefined
 
-// 심벌 타입에는 리터럴 문법이 없습니다.
-// 심벌 값을 가져올 때는 Symbol() 함수를 호출합니다. 이 함수는 절대 같은 값을 반환하지 않습니다.
-// 같은 인자로 호출하더라도 다른 값을 반환합니다.
+console.log("----- 호출 끝 -----");
 
-// Symbol()을 호출해 심벌 값을 얻었다면 객체의 기존 프로퍼티를 같은 이름으로 덮어 쓸 염려 없이 그 값을 프로퍼티 이름으로 추가할 수 있다는 뜻입니다.
+// 심벌 타입에는 리터럴 문법이 없습니다.
+// 심벌 값을 가져올 때는 Symbol() 함수를 호출해야 합니다. 이 함수는 절대 같은 값을 반환하지 않습니다.
+// 같은 인자로 호출하더라도 다른 값을 반환합니다.
+// Symbol()을 호출해 심벌 값을 얻었다면, 객체의 기존 프로터피를 같은 이름으로 덮어 쓸 염려 없이 그 값을 프로퍼티 이름으로 추가할 수 있다는 뜻입니다.
 
 let sym1 = Symbol("sym1");
 let sym2 = Symbol("sym1");
 console.log(sym1 === sym2); // false
 
 // Symbol() 함수는 선택 사항인 인자로 문자열을 받고 고유한 심벌 값을 반환합니다.
-// 문자열 인자를 전달하면 그 문자열은 심벌의 toString() 메서드 결과에 포함됩니다.
+// 문자열 인자를 전달하면, 그 문자열은 심벌의 toString() 메서드 결과에 포함됩니다.
 // 하지만, 위에서 설명했듯이 같은 문자열을 전달해 Symbol()을 다시 호출하더라도 그 결과는 완전히 다른 값입니다.
-// 심벌 인스턴스에서 흥미로운 메서드는 toString() 하나뿐이라는 겁니다.
+// 심벌 인스턴스에서 흥미로운 메서드는 toString() 하나 뿐입니다.
 
 let sym3 = Symbol("sym3");
 console.log(sym3.toString()); // Symbol(sym3)
@@ -193,14 +197,14 @@ console.log(sym3.toString()); // Symbol(sym3)
 // 반면에, 다른 코드에서도 쓸 수 있도록 심벌을 정의하고 공유하고 싶을 수도 있습니다.
 // 후자는 일종의 확장을 만들어 다른 코드에서도 사용할 수 있도록 하는 것과 같습니다.
 
-// 이를 위해 Symbol.for() 함수가 있습니다. 문자열 인자를 받고 그 문자열과 연관된 심벌 값을 반환합니다.
+// 이를 위해 Symbol.for() 함수가 있습니다. 문자열 인자를 받고, 그 문자열과 연관된 심벌 값을 반환합니다.
 // 그 문자열과 연관된 심벌이 존재하지 않으면 새 심벌을 생성해 반환하고, 존재하면 기존 심벌을 반환합니다.
 
-// Symbol()은 절대 같은 값을 반환하지 않지만,
-// Symbol.for()는 같은 문자열로 호출했을 때 항상 같은 값을 반환합니다.
+// Symbol()은 절대 같은 값을 반환하진 않지만,
+// Symbol.for()는 같은 문자열로 호출했을 때, 항상 같은 값을 반환합니다.
 // Symbol.for()에 전달된 문자열은 반환된 심벌의 toString() 결과에 나타납니다.
 
-// 반환된 심벌에 Symbol.keyFor()를 호출해도 해당 문자열을 얻을 수 잇습니다.
+// 반환된 심벌에 Symbol.keyFor()를 호출해도 해당 문자열을 얻을 수 있습니다.
 
 let sym4 = Symbol.for("sym4");
 console.log(sym4);
@@ -208,7 +212,7 @@ console.log(sym4);
 let sym5 = Symbol.for("sym4");
 console.log(sym5);
 
-console.log(sym4 === sym5); // true
-console.log(sym4.toString()); // Symbol(sym4)
+console.log(sym4 === sym5);
+console.log(sym4.toString());
 
-console.log(Symbol.keyFor(sym5)); // sym4
+console.log(Symbol.keyFor(sym5));

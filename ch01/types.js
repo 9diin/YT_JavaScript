@@ -216,3 +216,112 @@ console.log(sym4 === sym5);
 console.log(sym4.toString());
 
 console.log(Symbol.keyFor(sym5));
+
+// 2.6 배열 Array
+// 자바스크립트에서 배열은 순서가 있는 데이터의 집합입니다. 인덱스를 사용하여 요소에 접근할 수 있습니다.
+// 예제 코드를 한 번 살펴보도록 하겠습니다.
+
+const fruits = new Array("사과", "바나나", "체리", "멜론", "수박", "딸기");
+console.log(fruits); // ["사과", "바나나", "체리", "멜론", "수박", "딸기"]
+
+// new Array() 코드는 생성자 함수를 사용하여 배열을 생성하는 방법입니다. new Array()를 사용할 때, 인자로 숫자 하나를 ㄴ허으면
+// 해당 길이의 빈 배열이 생성됩니다. 예를 들어, new Array(5)는 길이가 5인 빈 배열을 생성합니다.
+
+// 그러나 생성자 함수를 사용하여 배열 데이터를 생성하는 것 말고도, 더 간편하게 대괄호([])를 사용하여 간편하게 만들 수 있는데요.
+// 이를 리터럴 방식으로 배열을 생성한다. 배열 리터럴이라고 합니다. 아래 코드를 한 번 살펴보도록 하겠습니다.
+
+/** 배열 리터럴
+ * 배열을 만드는 방식으로 대괄호([])라는 기호를 통해 만들었는데
+ * 이것을 리터럴 방식으로 만들었다고 한다.
+ */
+const animals = ["호랑이", "사자", "코끼리", "원숭이", "악어"];
+console.log(animals); // ["호랑이", "사자", "코끼리", "원숭이", "악어"]
+console.log(animals[1]); // 사자
+console.log(animals.length); // 5
+console.log(animals[4]); // 해당 배열의 가장 마지막 요소 조회 => "악어"
+console.log(animals[length - 1]); // 해당 배열의 가장 마지막 요소 조회
+console.log(animals[0]); // 해당 배열의 가장 첫 번째 요소 조회 => "호랑이"
+
+// animals라는 상수 식별자에 리터럴 방식으로 배열 데이터를 주입시켰습니다. 해당 배열 안에는 요소의 타입이 문자열(String)인 데이터가 5개가 있습니다.
+// 이때, 배열의 번호는 0번부터 시작한다. 따라서 0번째 배열은 배열의 첫 번째 요소를 의미합니다.
+
+// 배열의 길이를 측정할 땐, .length로 접근할 수 있습니다.
+
+// 2.7 객체 Object
+// 자바스크립트에서 객체란, 이름-값(key-value)의 쌍으로 구성된 데이터의 집합입니다.
+// 키는 문자열 또는 심벌이고, 값은 어떤 데이터 타입이든 가능합니다.
+// key는 속성 혹은 프로퍼티(Property)라고도 하며, value는 값이라고 부르기도 합니다.
+
+// 데이터 이름을 붙여서 접근할 수 있습니다.
+// 객체는 중복된 키를 허용하지 않습니다.
+
+const newUser = new Object(); // -> 생성자 함수를 통해 객체를 생성했다.
+newUser.name = "9Diin";
+newUser.age = 30;
+newUser.job = "Programmer";
+
+console.log(newUser); // -> key-value 형태의 조합으로 출력/조회가 된다.
+
+// 위 예시도 생성자를 활용한 객체 생성 방법입니다. new Object()를 사용하여 빈 객체를 생성한 후, 점 표기법(.)을 통해 속성을 추가하고 있습니다.
+// 결과적으로 newUser라는 객체는 이름-값(key-value) 쌍의 형태로 저장됩니다.
+
+/** 사용자 정의 생성자 함수 */
+function User() {
+    this.name = "John";
+    this.age = 50;
+    this.job = "Teacher";
+}
+
+const newUser2 = new User();
+console.log(newUser2);
+
+// User라는 생성자 함수를 정의하고, new User()를 사용하여 새로운 객체를 생성하고 있습니다.
+// 이 방법을 사용하면, 객체를 생성할 때 공통된 속성을 쉽게 정의할 수 있다는 장점이 있습니다.
+
+// - 첫 번째 방법은 단순히 객체를 생성하고, 속성을 추가하는 방법입니다.
+// - 두 번째 방법은 생성자 함수를 사용하여 객체를 정의하고, 여러 객체를 생성할 때 코드의 재사용성을 높이는 데 유용합니다.
+
+/** 객체 리터럴
+ * 객체를 만드는 방식으로 중괄호({})라는 기호를 통해 만들었습니다.
+ * 이것을 리터럴 방식으로 만들었다고 합니다.
+ *
+ * 객체 데이터에서의 key는 고유하며, 순서는 중요하지 않습니다.
+ * 단, 동일한 키 값일 경우, 나중에 작성된 값으로 덮어 씌어진다.
+ */
+
+const member = {
+    name: "9Diin",
+    age: 30,
+    job: "Office Worker",
+};
+console.log(member);
+console.log(member.name);
+console.log(member.age);
+console.log(member.job);
+console.log(member.email);
+console.log(member["job"]);
+
+const userA = {
+    name: "유저 A",
+    age: 10,
+    gender: "male",
+};
+
+const userB = {
+    name: "유저 B",
+    age: 20,
+    brother: userA,
+};
+
+console.log(userA.name); // 유저 A
+console.log(userB.brother);
+console.log(userB.brother["age"]); // 10
+console.log(userB["brother"].gender); // male
+
+const family = [userA, userB];
+console.log(family);
+console.log(family[0].gender); // male
+console.log(family[1]["name"]); // 유저 B
+
+// 객체 리터럴 방식도 배열 리터럴 방식과 마찬가지로 객체를 만드는 방식을 중괄호({})라는 기호를 통해 만드는 것을 말합니다.
+// 이것 또한 러터럴 방식으로 만들었다고 말합니다.

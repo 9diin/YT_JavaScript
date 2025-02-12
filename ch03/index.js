@@ -82,7 +82,7 @@ console.log(newObj3);
 // 이 연산자의 왼쪽은 값이 객체인 표현식이어야 합니다.
 
 // 점 연산자를 사용한다면 오른쪽은 반드시 프로퍼티 이름인 단순한 식별자여야 합니다.
-// 대괄로를 사용한다면 그 안에 있는 값은 원하는 프로퍼티 이름인 문자열로 평가되는 표현식이어야 합니다.
+// 대괄호를 사용한다면 그 안에 있는 값은 원하는 프로퍼티 이름인 문자열로 평가되는 표현식이어야 합니다.
 
 let author = book.author; // book의 author 프로퍼티를 가져옵니다.
 let name = `${author.firstName} ${author.lastName}`; // author의 firstName과 lastName 프로퍼티를 가져옵니다.

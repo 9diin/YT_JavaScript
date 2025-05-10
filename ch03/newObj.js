@@ -61,5 +61,5 @@ let str = JSON.stringify(obj);
 let par = JSON.parse(str);
 
 // JSON 문법은 자바스크립트 문법의 부분 집합이며 자바스크립트 값 전체를 표현하지는 못합니다.
-// 객체, 배열, 문자열, 유한한 순자, true, false, null은 모두 지원되고 직렬화와 복원이 가능합니다.
+// 객체, 배열, 문자열, 유한한 숫자, true, false, null은 모두 지원되고 직렬화와 복원이 가능합니다.
 // NaN, Infinity, -Infinity는 null로 직렬화됩니다.

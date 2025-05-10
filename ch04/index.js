@@ -4,12 +4,13 @@
 // 배열 요소에 객체나 다른 배열을 써도 상관없으므로 객체로 이루어진 배열이나 배열로 이루어진 배열 같은 복잡한 데이터 구조를 만들 수도 있습니다.
 // 배열의 첫 번째 요소의 인덱스는 1이 아니라 0으로 시작합니다.
 
-// 자바스크립트 배열은 동적입니다. 필요한 만큼 커지거나 작아질 수 있고, 배열을 생성할 때 고정된 크기를 선언하거나 크기가 변할 때 배열을 재할당할 필요가 없습니다.
-// 자바스크립트는 성긴(sparse) 배열을 허용합니다. 즉 요소의 인덱스가 꼭 이어질 필요는 없고, 그 사이에 갭이 있어도 됩니다.
+// 자바스크립트 배열은 동적입니다.
+// 필요한 만큼 배열의 크기가 커지거나 작아질 수 있고, 배열을 생성할 때 고정된 크기를 선언하거나 크기가 변할 때 배열을 재할당할 필요가 없습니다.
+// 자바스크립트는 성긴 배열(sparse)을 허용합니다. 즉 요소의 인덱스가 꼭 이어질 필요가 없고, 그 사이에 값이 없어도 된다 혹은 갭이 있어도 됩니다.
 
 // 1.1 배열 생성
 // - 배열 리터럴
-// - 이터러블 객체에 분해 연산자 ... 적용
+// - 이터러블(반복 가능한) 객체에 분해 연산자 ... 적용
 // - Array() 생성자
 // - Array.of()와 Array.from() 팩토리 메서드
 
@@ -21,7 +22,7 @@ let nums = [1, 2, 3, 4, 5]; // 숫자 요소가 다섯 개 있는 배열
 let mix = [1.1, true, "문자열 데이터"]; // 타입이 다른 요소가 세 개인 배열
 
 let base = 1024;
-let table = [base + 1, base + 2, base + 3, base + 4];
+let table = [base, base + 1, base + 2, base + 3];
 
 // 배열 리터럴 안에 객체 리터럴이나 다른 배열 리터럴을 써도 됩니다.
 
@@ -41,7 +42,7 @@ let undefs = [, ,]; // 요소가 없지만 길이가 2인 배열
 let c = [1, 2, 3];
 let d = [0, ...c, 4]; // d == [0, 1, 2, 3, 4]
 
-// 분해연산자는 배열을 얕게(shallow) 복사할 때 유용합니다.
+// 분해 연산자 같은 경우에는 배열을 얕게(shallow) 복사할 때 유용합니다.
 
 let original = [1, 2, 3];
 let copy = [...original];
@@ -49,11 +50,7 @@ let copy = [...original];
 console.log("===== 테스트 01 =====");
 console.log(original);
 console.log(copy);
-
-console.log("===== 테스트 02 =====");
-copy[0] = 0; // 복사본 배열의 인덱스 0의 값을 0으로 변경/수정
-console.log(original);
-console.log(copy);
+console.log(original === copy); // true or false
 
 // 1.1.3 Array() 생성자
 // - 인자 없이 호출
@@ -64,6 +61,10 @@ let newArr2 = new Array(5); // 지정된 길이를 가진 배열을 생성합니
 
 // - 배열 요소를 두개 이상 쓰거나 숫자가 아닌 요소를 하나만 넘겨 호출
 let newArr3 = new Array(5, 4, 3, 2, 1, "문자열 데이터 01", "문자열 데이터 02"); // 다음과 같이 사용하면 생성자의 인자가 새 배열의 요소가 됩니다.
+
+console.log(newArr1);
+console.log(newArr2);
+console.log(newArr3);
 
 // 1.1.4 Array.of()
 // Array() 생성자를 숫자 인자 하나만 넘겨 호출하면 길이가 그 숫자인 배열이 생성되는 걸 확인했습니다.
@@ -79,7 +80,7 @@ Array.of(1, 2, 3); // [1, 2, 3];
 // Array.from(iterable)은 분해 연산자를 사용한 [...iterable]과 동등합니다.
 
 let copy2 = Array.from(original);
-// let copy = [...original];
+// let copy2 = [...original];
 
 // Array.from()이 중요한 이유는 배열 비슷한 객체(유사배열)를 진정한 배열로 바꾸는 방법이기 때문입니다.
 // 비열 비슷한 객체란 숫자인 length 프로퍼티가 있고, 이름이 정수인 프로퍼티에 값이 저장된 객체를 말합니다.
@@ -93,5 +94,6 @@ let copy2 = Array.from(original);
 let str = "Hello";
 let arr = Array.from(str, (char, index) => char + index);
 
+console.log("===== Array.from 테스트 =====");
 console.log(str);
 console.log(arr);

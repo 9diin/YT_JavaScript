@@ -1,10 +1,54 @@
+// 5. 배열 순회
+let letters = [..."Hello World"];
+let string = "";
+
+for (let letter of letters) {
+    string += letter;
+}
+console.log(string); // => "Hello World"
+
+let everyother = "";
+for (let [index, letter] of letters.entries()) {
+    if (index % 2 === 0) everyother += letter; // 짝수 번째 인덱스의 글자
+}
+console.log(everyother); // HloWrd
+
+// forEach()도 배열을 순회하는 좋은 방법 중 하나입니다.
+// 이 메서드는 for 루프의 변형이 아니라 배열 순회를 함수형으로 바꾼 배열 메서드입니다.
+// forEach()는 전달받은 함수를 각 배열 요소에서 호출합니다.
+
+let uppercase = "";
+letters.forEach((letter, index) => {
+    // 화살표 함수 문법을 썼습니다.
+    uppercase += letter.toUpperCase();
+    console.log(letter, index);
+});
+console.log(uppercase); // => "HELLO WORLD"
+
+// forEach()는 배열을 순서대로 순회하며 배열 인덱스를 함수의 두 번째 인자로 전달합니다.
+// for-of 루프와 달리 forEach()는 성긴 배열을 인식하고, 존재하지 않는 요소에 대해서는 함수를 호출하지 않습니다.
+
+let test1 = [1, 2, 3];
+delete test1[1];
+
+console.log("delete 메서드가 동작한 직후, test: ", test1); // [1, 비어있음, 3]
+console.log("test1 배열의 길이: ", test1.length); // 3
+test1.forEach((item) => console.log(item));
+
+let test2 = [1, 2, 3];
+test2[1] = undefined;
+
+console.log("delete 메서드가 동작한 직후, test: ", test2); // [1, undefined, 3]
+console.log("test2 배열의 길이: ", test2.length); // 3
+test2.forEach((item) => console.log(item));
+
 // 6. 배열 메서드
 
 // 지금까지는 배열과 관련된 기본적인 자바스크립트 문법에 집중을 했다면,
 // 이제부터는 가장 자주 사용되는 Array 클래스에 정의된 메서드를 공부해보도록 하겠습니다.
 
 // - 배열 요소를 순회하는 이터레이터 메서드, 이들은 일반적으로 각 요소에 대해 함수를 호출합니다.
-// - 배열의 앞이나 뒤에 요 소를 추가하거나 제거하는 스택, 큐 메서드
+// - 배열의 앞이나 뒤에 요소를 추가하거나 제거하는 스택, 큐 메서드
 // - 큰 배열을 추출, 삭제, 삽입, 충당(fill), 복사하는 하위 배열 메서드
 // - 배열을 검색하고 정렬하는 메서드
 
@@ -75,8 +119,8 @@ nums5.every((x) => x % 2 === 0); // => false: 짝수가 아닌 값이 있습니�
 
 // some() 메서드는 배열 요소 중 판별 함수가 true를 반환하는 것이 하나라도 있으면 true를 반환하며, 요소 전체가 false를 반환할 때만 false를 반환합니다.
 let nums6 = [1, 2, 3, 4, 5];
-nums6.some((x) => x % 2 === 0); // => true; a에는 짝수가 있습니다.
-nums6.some(isNaN); // => false; a에 NaN은 없습니다.
+nums6.some((x) => x % 2 === 0); // => true; nums6에는 짝수가 있습니다.
+nums6.some(isNaN); // => false; nums6에 NaN은 없습니다.
 
 // every()와 some()은 자신이 어떤 값을 반환할지 확실해지는 순간 순회를 멈춥니다.
 // some()은 판별 함수가 true를 반환하는 즉시 true를 반환하므로 (마지막 요소를 제외한) 모든 요소가 false를 반환할 때만 배열 전체를 순회합니다.

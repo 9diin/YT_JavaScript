@@ -1,15 +1,17 @@
-// 1. reduce()와 reduceRight()
+// 1. reduce() reduceRight()
 
 // reduce()와 reduceRight() 메서드는 제공하는 함수를 사용해 배열 요소를 값 하나로 만듭니다.
-// reduce()는 인자 두개를 받습니다.
+// reduce()는 인자를 두 개를 받습니다
 // 첫 번째는 "축소" 동작을 행하는 함수입니다. 이 함수가 하는 일은 어떤 방식으로든 값 두 개를 받아서 하나를 반환하는 겁니다.
 // 두 번째 인자는 선택 사항이며 함수에 전달할 초깃값입니다.
+
 // reduce()에 사용하는 함수는 forEach()와 map()에 사용하는 함수와는 다릅니다.
 // 값, 인덱스, 배열 그 자체는 각각 두 번째, 세 번째, 네 번째 인자로 전달됩니다.
-// 첫 번째 인자는 여태까지 행한 '축소' 작업의 결과입니다.
+// 첫 번째 인자는 여태까지 행한 "축소" 작업의 결과가 할당됩니다.
 // 함수를 처음 호출할 때는 그동안 행한 작업이 없으니 reduce()의 두 번째 인자로 전달한 초깃값을 사용합니다.
 
 let nums = [1, 2, 3, 4, 5];
+
 const res1 = nums.reduce((x, y) => {
     console.log("x:", x);
     console.log("y:", y);
@@ -21,7 +23,7 @@ const res2 = nums.reduce((x, y) => x * y, 1);
 console.log(res2); // 120
 
 const res3 = nums.reduce((x, y) => (x > y ? x : y));
-console.log(res3); // 5 => 가장 큰 값
+console.log(res3); // 5 => 해당 배열에서 가장 큰 값을 조회
 
 // reduceRight()는 reduce()와 마찬가지지만 오른쪽에서 왼쪽으로 진행한다는 점이 다릅니다.
 const letters = ["a", "b", "c", "d"];
